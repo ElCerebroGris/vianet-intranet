@@ -1,0 +1,150 @@
+$(function() {
+    "use strict";
+
+
+	// chart 1
+	var ctx = document.getElementById('chart1').getContext('2d');
+
+
+  var gradientStroke1 = ctx.createLinearGradient(0, 0, 0, 300);
+		          gradientStroke1.addColorStop(0, 'rgba(255, 255, 0, 0.5)');
+		          gradientStroke1.addColorStop(1, 'rgba(233, 30, 99, 0.0)');
+
+		      var gradientStroke2 = ctx.createLinearGradient(0, 0, 0, 300);
+		          gradientStroke2.addColorStop(0, '#ffff00');
+		          gradientStroke2.addColorStop(1, '#e91e63');
+
+
+		      var gradientStroke3 = ctx.createLinearGradient(0, 0, 0, 300);
+		          gradientStroke3.addColorStop(0, 'rgba(0, 114, 255, 0.5)');
+		          gradientStroke3.addColorStop(1, 'rgba(0, 200, 255, 0.0)');
+
+		      var gradientStroke4 = ctx.createLinearGradient(0, 0, 0, 300);
+		          gradientStroke4.addColorStop(0, '#0072ff');
+		          gradientStroke4.addColorStop(1, '#00c8ff');
+
+
+	var myChart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+      datasets: [{
+        label: 'Visits',
+        data: [6, 20, 14, 12, 17, 8, 10],
+        borderColor: gradientStroke2,
+        fill: {
+					target: 'origin',
+					above: gradientStroke1,   // Area will be red above the origin
+					//below: 'rgb(21 202 32 / 100%)'   // And blue below the origin
+				  },
+        pointRadius :"0",
+        pointHoverRadius:"0",
+        tension: 0.4,
+        borderWidth: 3
+      }, {
+        label: 'Sales',
+        data: [5, 30, 16, 23, 8, 14, 11],
+        borderColor: gradientStroke4,
+        fill: {
+					target: 'origin',
+					above: gradientStroke3,   // Area will be red above the origin
+					//below: 'rgb(21 202 32 / 100%)'   // And blue below the origin
+				  },
+        pointRadius :"0",
+        pointHoverRadius:"0",
+        tension: 0.4,
+        borderWidth: 3
+      }]
+		},
+		options: {
+			maintainAspectRatio: false,
+			legend: {
+				display: true,
+				labels: {
+					fontColor: '#585757',
+					boxWidth: 40
+				}
+			},
+			tooltips: {
+				enabled: false
+			},
+			scales: {
+				xAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontColor: '#585757'
+					},
+					gridLines: {
+						display: true,
+						color: "rgba(0, 0, 0, 0.07)"
+					},
+				}],
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+						fontColor: '#585757'
+					},
+					gridLines: {
+						display: true,
+						color: "rgba(0, 0, 0, 0.07)"
+					},
+				}]
+			}
+		}
+	});
+
+
+
+
+  // chart 2
+
+  var ctx = document.getElementById('chart2').getContext('2d');
+
+  var gradientStroke = ctx.createLinearGradient(0, 0, 0, 300);
+      gradientStroke.addColorStop(0, '#ee0979');
+      gradientStroke.addColorStop(1, '#ff6a00');
+
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      datasets: [{
+        label: 'Sales',
+        data: [9, 7, 14, 10, 12, 8],
+        backgroundColor: gradientStroke,
+        hoverBackgroundColor: gradientStroke,
+        borderColor: "#fff",
+        pointRadius :6,
+        pointHoverRadius :6,
+        pointHoverBackgroundColor: "#fff",
+        borderWidth: 2,
+        borderRadius: 20,
+
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      barPercentage: 0.5,
+      categoryPercentage: 0.7,
+      plugins: {
+        legend: {
+          display: false,
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+
+
+ // chart 3
+
+
+
+
+});
+
