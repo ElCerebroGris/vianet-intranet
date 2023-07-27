@@ -1,0 +1,99 @@
+<div class="page-wrapper">
+  <div class="page-content">
+    <h6 class="mb-0 text-uppercase">Nova Pessoa</h6>
+    <hr />
+
+    <div class="card">
+      <div class="card-body p-4">
+        <div class="form-body mt-4">
+          <div *ngIf="loading" class="d-flex justify-content-center">
+            <div style="width: 5rem; height: 5rem;" class="spinner-border" role="status">
+            </div>
+          </div>
+
+          <div *ngIf="errorForm" class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+            <div class="text-white">Dados incorretos!!!</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+          <form [formGroup]="addForm" *ngIf="!loading" class="row g-3">
+            <div class="col-md-6">
+              <label for="input1" class="form-label">Nome completo</label>
+              <input formControlName="name" type="text" class="form-control" id="input1" />
+            </div>
+            <div class="col-md-6">
+              <label for="input1" class="form-label">Data de nascimento</label>
+              <input required="" formControlName="bornAt" type="date" class="form-control" id="input1" />
+            </div>
+            <div class="col-md-6">
+              <label for="input2" class="form-label">Nome de utilizador</label>
+              <input minlength="6" formControlName="username" type="text" class="form-control" id="input2" />
+            </div>
+            <div class="col-md-6">
+              <label for="input4" class="form-label">Email</label>
+              <input formControlName="email"
+                type="email"
+                class="form-control"
+                id="input4"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="input4" class="form-label">Telefone</label>
+              <input formControlName="phone" type="text" class="form-control" id="input4" />
+            </div>
+            <div class="col-md-6">
+              <label for="input4" class="form-label">Extenção</label>
+              <input formControlName="extension" type="text" class="form-control" id="input4" />
+            </div>
+            <div class="col-md-12">
+              <label for="input5" class="form-label">Senha</label>
+              <input formControlName="password"
+                type="text"
+                class="form-control"
+                id="input5"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <label for="input7" class="form-label">Área</label>
+              <select formControlName="areaId" id="input7" class="form-select">
+                <option value="1">RH</option>
+                <option value="2">DTI</option>
+                <option value="3">Administração</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="input7" class="form-label">Função</label>
+              <select formControlName="functionId" id="input7" class="form-select">
+                <option value="1">Técnico</option>
+                <option value="2">Gestão Administrativa</option>
+                <option value="3">Seviços de apoio</option>
+              </select>
+            </div>
+
+            <div class="col-md-12">
+              <label for="input5" class="form-label">URL foto</label>
+              <input formControlName="photoUrl"
+                type="text"
+                class="form-control"
+                id="input5"
+              />
+            </div>
+
+            <div class="col-12">
+              <button
+                  (click)="salvar()"
+                  type="button"
+                  class="btn btn-primary"
+                >
+                  Salvar
+                </button>
+            </div>
+          </form>
+          <!--end row-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,82 +2,122 @@
   <div class="page-content">
     <h6 class="mb-0 text-uppercase">Lista de Processos</h6>
     <hr />
+
     <div class="row">
-      <div class="card radius-10">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row align-items-end">
+              <div class="col-lg-3 col-xl-2">
+                <a
+                  *ngIf="areaId == 0"
+                  [routerLink]="['/processo-novo']"
+                  routerLinkActive="router-link-active"
+                  class="btn btn-primary mb-3 mb-lg-0"
+                >
+                  <i class="bx bxs-plus-square"></i>Novo Processo</a
+                >
+              </div>
+
+              <div class="col-lg-9 col-xl-10">
+                <form class="float-lg-end">
+                  <div class="row row-cols-lg-2 row-cols-xl-auto g-2">
+                    <div class="col">
+                      <div class="position-relative">
+                        <input
+                          type="text"
+                          class="form-control ps-5"
+                          placeholder="Pesquisar..."
+                        />
+                        <span
+                          class="position-absolute top-50 product-show translate-middle-y"
+                          ><i class="bx bx-search"></i
+                        ></span>
+                      </div>
+                    </div>
+                    <div class="col">
+                      <div
+                        class="btn-group"
+                        role="group"
+                        aria-label="Button group with nested dropdown"
+                      >
+                        <button type="button" class="btn btn-white">
+                          Área
+                        </button>
+                        <div class="btn-group" role="group">
+                          <button
+                            id="btnGroupDrop1"
+                            type="button"
+                            class="btn btn-white dropdown-toggle dropdown-toggle-nocaret px-1"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                          >
+                            <i class="bx bx-chevron-down"></i>
+                          </button>
+                          <ul
+                            class="dropdown-menu"
+                            aria-labelledby="btnGroupDrop1"
+                          >
+                            <li>
+                              <a class="dropdown-item" href="#"
+                                >Dropdown link</a
+                              >
+                            </li>
+                            <li>
+                              <a class="dropdown-item" href="#"
+                                >Dropdown link</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="card">
         <div class="card-body">
           <div class="table-responsive">
-            <table class="table align-middle mb-0">
+            <table class="table mb-0">
               <thead class="table-light">
                 <tr>
-                  <th>Product</th>
-                  <th>Product ID</th>
-                  <th>Status</th>
-                  <th>Amount</th>
-                  <th>Date</th>
+                  <th>Descrição</th>
+                  <th>Área de destino</th>
+                  <th>Criado por</th>
+                  <th>Data de Criação</th>
+                  <th>Estado</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Iphone 5</td>
-                  <td>#9405822</td>
+                <tr *ngFor="let item of processos">
+                  <td>{{ item.name }}</td>
+                  <td>{{ getArea(item.areaId) }}</td>
+                  <td>{{ item.createdBy }}</td>
+
+                  <td>{{ item.createdAt | date : "dd-MM-yyyy hh:mm" }}</td>
                   <td>
                     <span
                       class="badge bg-gradient-quepal text-white shadow-sm w-100"
-                      >Paid</span
+                      >Activo</span
                     >
                   </td>
-                  <td>$1250.00</td>
-                  <td>03 Feb 2020</td>
                   <td>
-                    <a [routerLink]="['/arquivos']" routerLinkActive="router-link-active"
+                    <a
+                      [routerLink]="['/arquivos/' + item.uuid]"
+                      routerLinkActive="router-link-active"
                       type="button"
                       class="btn btn-primary btn-sm radius-30 px-4"
                     >
                       Ver detalhes
-                  </a>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>Earphone GL</td>
-                  <td>#8304620</td>
-                  <td>
-                    <span
-                      class="badge bg-gradient-blooker text-white shadow-sm w-100"
-                      >Pending</span
-                    >
-                  </td>
-                  <td>$1500.00</td>
-                  <td>05 Feb 2020</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm radius-30 px-4"
-                    >
-                      Ver detalhes
-                    </button>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td>HD Hand Camera</td>
-                  <td>#4736890</td>
-                  <td>
-                    <span
-                      class="badge bg-gradient-bloody text-white shadow-sm w-100"
-                      >Failed</span
-                    >
-                  </td>
-                  <td>$1400.00</td>
-                  <td>06 Feb 2020</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="btn btn-primary btn-sm radius-30 px-4"
-                    >
-                      Ver detalhes
-                    </button>
+                    </a>
                   </td>
                 </tr>
               </tbody>

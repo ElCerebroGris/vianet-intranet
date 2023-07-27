@@ -1,0 +1,172 @@
+<div class="page-wrapper">
+  <div class="page-content">
+    <h6 class="mb-0 text-uppercase">Novo Processo</h6>
+    <hr />
+
+    <div class="card">
+      <div class="card-body p-4">
+        <div class="form-body mt-4">
+          <div *ngIf="loading" class="d-flex justify-content-center">
+            <div style="width: 5rem; height: 5rem;" class="spinner-border" role="status">
+            </div>
+          </div>
+
+          <div *ngIf="errorForm" class="alert alert-danger border-0 bg-danger alert-dismissible fade show">
+            <div class="text-white">Dados incorretos!!!</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+          <div class="row" [formGroup]="addForm" *ngIf="!loading">
+            <div class="col-lg-8">
+              <div class="border border-3 p-4 rounded" *ngIf="qrCode.imageURL">
+                <div class="mb-3">
+                  <label for="inputProductTitle" class="form-label"
+                    >Descrição</label
+                  >
+                  <input
+                    formControlName="name"
+                    type="email"
+                    class="form-control"
+                    id="inputProductTitle"
+                  />
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="Origem" class="form-label">Origem</label>
+                  <select
+                    [(ngModel)]="origemProcesso"
+                    formControlName="source"
+                    class="form-select"
+                    id="Origem"
+                  >
+                    <option value="1">INTERNO</option>
+                    <option value="2">EXTERNO</option>
+                  </select>
+                </div>
+                <div class="col-12 mb-3" *ngIf="origemProcesso == 1">
+                  <label for="inputVendor" class="form-label"
+                    >Área de Origem</label
+                  >
+                  <select
+                    formControlName="sourceAreaId"
+                    class="form-select"
+                    id="inputVendor"
+                  >
+                    <option *ngFor="let item of areas" [value]="item.code">
+                      {{ item.info }}
+                    </option>
+                  </select>
+                </div>
+                <div class="col-12 mb-3" *ngIf="origemProcesso == 2">
+                  <label for="inputVendor" class="form-label"
+                    >Nome Entidade</label
+                  >
+                  <input
+                    formControlName="entityName"
+                    type="text"
+                    class="form-control"
+                    id="inputProductTitle"
+                  />
+                </div>
+                <div class="col-12 mb-3" *ngIf="origemProcesso == 2">
+                  <label for="inputVendor" class="form-label">NIF</label>
+                  <input
+                    formControlName="entityNIF"
+                    type="text"
+                    class="form-control"
+                    id="inputProductTitle"
+                  />
+                </div>
+                <div class="col-12 mb-3">
+                  <label for="inputVendor" class="form-label">Área Destino</label>
+                  <select
+                    formControlName="targetAreaId"
+                    class="form-select"
+                    id="inputVendor"
+                  >
+                    <option *ngFor="let item of areas" [value]="item.code">
+                      {{ item.info }}
+                    </option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="inputProductTitle" class="form-label"
+                    >Arquivo</label
+                  >
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="inputProductTitle"
+                    (change)="onFileSelected($event)"
+                  />
+                </div>
+                <div class="col-12">
+                  <div class="d-grid">
+                    <button
+                      (click)="salvar()"
+                      type="button"
+                      class="btn btn-primary"
+                    >
+                      Salvar
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!qrCode.imageURL">
+                <h1 class="text-center">Aguardar o QR Code</h1>
+              </div>
+
+            </div>
+            <div class="col-lg-4">
+              <div class="border border-3 p-4 rounded">
+                <div *ngIf="loading" class="d-flex justify-content-center">
+                  <div style="width: 5rem; height: 5rem;" class="spinner-border" role="status">
+                  </div>
+                </div>
+
+                <div class="row g-3" *ngIf="!loading">
+                  <div class="mb-3">
+                    <label for="qrcode" class="form-label">QR Code</label>
+                    <input
+                    [(ngModel)]="qrCode.code"
+                    [ngModelOptions]="{ standalone: true }"
+                      type="text"
+                      class="form-control"
+                      id="qrcode"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <div *ngIf="qrCode.imageURL">
+                      <img width="200px" height="200px" [src]="baseUrl+qrCode.imageURL" class="mx-auto d-block" alt="QR Code" />
+                    </div>
+                  </div>
+                  <div class="col-12" *ngIf="qrCode.imageURL">
+                    <div class="d-grid">
+                      <button (click)="print()"
+                        type="button"
+                        class="btn btn-info"
+                      >
+                        Imprimir
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="d-grid">
+                      <button
+                        (click)="gerarQRCode()"
+                        type="button"
+                        class="btn btn-primary"
+                      >
+                        Gerar Novo QR Code
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end row-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

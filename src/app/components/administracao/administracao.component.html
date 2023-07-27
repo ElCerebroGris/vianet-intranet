@@ -35,7 +35,7 @@
                     <div class="tab-icon">
                       <i class="bx bx-user-pin font-18 me-1"></i>
                     </div>
-                    <div class="tab-title">Grupos</div>
+                    <div class="tab-title">Áreas</div>
                   </div>
                 </a>
               </li>
@@ -49,7 +49,7 @@
                 >
                   <div class="d-flex align-items-center">
                     <div class="tab-icon">
-                      <i class="bx bx-microphone font-18 me-1"></i>
+                      <i class="bx bx-user-pin font-18 me-1"></i>
                     </div>
                     <div class="tab-title">Permissões</div>
                   </div>
@@ -76,10 +76,10 @@
                     ></span>
                   </div>
                   <div class="ms-auto">
-                    <a
-                      href="javascript:;"
+                    <a [routerLink]="['/admin/pessoas-add']" routerLinkActive="router-link-active"
                       class="btn btn-primary radius-30 mt-2 mt-lg-0"
-                      ><i class="bx bxs-plus-square"></i>Adicionar nova pessoa</a
+                      ><i class="bx bxs-plus-square"></i>Nova
+                      pessoa</a
                     >
                   </div>
                 </div>
@@ -90,30 +90,22 @@
                         <th>#</th>
                         <th>Nome</th>
                         <th>Email</th>
-                        <th>Estado</th>
-                        <th>Actions</th>
+                        <th></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
+                      <tr *ngFor="let item of persons">
                         <td>
                           <img
-                            src="assets/images/products/01.png"
+                            [src]="item.photoUrl"
                             class="product-img-2"
                             alt="product img"
                           />
                         </td>
                         <td>
-                          <h6 class="mb-0 font-14">#OS-000354</h6>
+                          <h6 class="mb-0 font-14">{{item.name}}</h6>
                         </td>
-                        <td>Gaspur Antunes</td>
-                        <td>
-                          <div
-                            class="badge rounded-pill text-success bg-light-success p-2 text-uppercase px-3"
-                          >
-                            <i class="bx bxs-circle me-1"></i>Activo
-                          </div>
-                        </td>
+                        <td>{{item.email}}</td>
                         <td>
                           <div class="d-flex order-actions">
                             <a href="javascript:;" class=""
@@ -133,38 +125,127 @@
                 </div>
               </div>
               <div class="tab-pane fade" id="primaryprofile" role="tabpanel">
-                <p>
-                  Food truck fixie locavore, accusamus mcsweeney's marfa nulla
-                  single-origin coffee squid. Exercitation +1 labore velit, blog
-                  sartorial PBR leggings next level wes anderson artisan four
-                  loko farm-to-table craft beer twee. Qui photo booth
-                  letterpress, commodo enim craft beer mlkshk aliquip jean
-                  shorts ullamco ad vinyl cillum PBR. Homo nostrud organic,
-                  assumenda labore aesthetic magna delectus mollit. Keytar
-                  helvetica VHS salvia yr, vero magna velit sapiente labore
-                  stumptown. Vegan fanny pack odio cillum wes anderson 8-bit,
-                  sustainable jean shorts beard ut DIY ethical culpa terry
-                  richardson biodiesel. Art party scenester stumptown, tumblr
-                  butcher vero sint qui sapiente accusamus tattooed echo park.
-                </p>
+                <div class="d-lg-flex align-items-center mb-4 gap-3">
+                  <div class="position-relative">
+                    <input
+                      type="text"
+                      class="form-control ps-5 radius-30"
+                      placeholder="Pesquisar"
+                    />
+                    <span
+                      class="position-absolute top-50 product-show translate-middle-y"
+                      ><i class="bx bx-search"></i
+                    ></span>
+                  </div>
+                  <div class="ms-auto">
+                  </div>
+                </div>
+                <div class="table-responsive">
+                  <table class="table mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Descrição</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of areas">
+                        <td>
+                          <h6 class="mb-0 font-14">{{item.info}}</h6>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
+
               <div class="tab-pane fade" id="primarycontact" role="tabpanel">
-                <p>
-                  Etsy mixtape wayfarers, ethical wes anderson tofu before they
-                  sold out mcsweeney's organic lomo retro fanny pack lo-fi
-                  farm-to-table readymade. Messenger bag gentrify pitchfork
-                  tattooed craft beer, iphone skateboard locavore carles etsy
-                  salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
-                  Leggings gentrify squid 8-bit cred pitchfork. Williamsburg
-                  banh mi whatever gluten-free, carles pitchfork biodiesel fixie
-                  etsy retro mlkshk vice blog. Scenester cred you probably
-                  haven't heard of them, vinyl craft beer blog stumptown.
-                  Pitchfork sustainable tofu synth chambray yr.
-                </p>
+                <div class="table-responsive">
+                  <table class="table mb-0">
+                    <thead class="table-light">
+                      <tr>
+                        <th>#</th>
+                        <th>Descrição</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of permissions">
+                        <td>
+                          <h6 class="mb-0 font-14">{{item.name}}</h6>
+                        </td>
+                        <td>{{item.description}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  style="display: none"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Novo Grupo</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form class="row g-3">
+          <div class="row mb-3">
+
+            <div class="row mb-3 mt-3">
+              <label for="input35" class="col-sm-3 col-form-label">Descrição</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="input35">
+              </div>
+            </div>
+
+            <h4>Permissões</h4>
+            <div class="row py-2">
+              <label for="input39" class="col-sm-3 col-form-label">Gerir Espaços</label>
+              <div class="col-sm-9">
+                <select class="form-select" id="input39">
+                  <option selected="">Recusar</option>
+                  <option value="1">Permitir</option>
+                  </select>
+              </div>
+            </div>
+
+            <div class="row py-2">
+              <label for="input39" class="col-sm-3 col-form-label">Gerir Pessoas</label>
+              <div class="col-sm-9">
+                <select class="form-select" id="input39">
+                  <option selected="">Recusar</option>
+                  <option value="1">Permitir</option>
+                  </select>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Fechar
+        </button>
+        <button type="button" class="btn btn-primary">Salvar</button>
       </div>
     </div>
   </div>

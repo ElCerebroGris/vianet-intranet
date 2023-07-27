@@ -6,13 +6,13 @@
           <div class="card-body">
             <div class="d-flex align-items-center">
               <div>
-                <p class="mb-0 text-secondary">Total Orders</p>
-                <h4 class="my-1 text-info">4805</h4>
+                <p class="mb-0 text-secondary">Espaços</p>
+                <h4 class="my-1 text-info">2</h4>
               </div>
               <div
                 class="widgets-icons-2 rounded-circle bg-gradient-blues text-white ms-auto"
               >
-                <i class="bx bxs-cart"></i>
+                <i class="bx bxs-group"></i>
               </div>
             </div>
           </div>
@@ -26,7 +26,7 @@
             <div class="d-flex align-items-center">
               <div>
                 <p class="mb-0 text-secondary">Total de Processos</p>
-                <h4 class="my-1 text-danger">$84,245</h4>
+                <h4 class="my-1 text-danger">2</h4>
               </div>
               <div
                 class="widgets-icons-2 rounded-circle bg-gradient-burning text-white ms-auto"
@@ -44,8 +44,8 @@
           <div class="card-body">
             <div class="d-flex align-items-center">
               <div>
-                <p class="mb-0 text-secondary">Bounce Rate</p>
-                <h4 class="my-1 text-success">34.6%</h4>
+                <p class="mb-0 text-secondary">Noticias</p>
+                <h4 class="my-1 text-success">12</h4>
               </div>
               <div
                 class="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto"
@@ -64,7 +64,7 @@
             <div class="d-flex align-items-center">
               <div>
                 <p class="mb-0 text-secondary">Pessoas</p>
-                <h4 class="my-1 text-warning">8.4K</h4>
+                <h4 class="my-1 text-warning">23</h4>
               </div>
               <div
                 class="widgets-icons-2 rounded-circle bg-gradient-orange text-white ms-auto"
@@ -80,96 +80,125 @@
 
     <div class="row">
       <div class="col-12 col-lg-8 d-flex">
-        <div class="card radius-10 w-100">
-          <div class="card-header">
-            <div class="d-flex align-items-center">
-              <div>
-                <h6 class="mb-0">Processos</h6>
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <div class="d-flex align-items-center">
+                <div>
+                  <h6 class="mb-0">Últimas notícias</h6>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body">
-            <div class="d-flex align-items-center ms-auto font-13 gap-2 mb-3">
-              <span class="border px-1 rounded cursor-pointer"
-                ><i class="bx bxs-circle me-1" style="color: #14abef"></i
-                >Sales</span
+            <div class="card-body">
+              <div
+                id="carouselExampleCaptions"
+                class="carousel slide"
+                data-bs-ride="carousel"
               >
-              <span class="border px-1 rounded cursor-pointer"
-                ><i class="bx bxs-circle me-1" style="color: #ffc107"></i
-                >Visits</span
-              >
-            </div>
-            <div class="chart-container-1">
-              <canvas id="chart1"></canvas>
+                <ol class="carousel-indicators">
+                  <li
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide-to="0"
+                    class="active"
+                  ></li>
+                  <li
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide-to="1"
+                  ></li>
+                  <li
+                    data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide-to="2"
+                  ></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active" *ngIf="news.length > 0">
+                    <h5>{{news[0].title}}</h5>
+                      <p>
+                        {{news[0].description}}
+                      </p>
+                    <img
+                      [src]="news[0].imageURL"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                  <div class="carousel-item" *ngFor="let item of news | slice:1">
+                    <h5>{{item.title}}</h5>
+                      <p>
+                        {{item.description}}
+                      </p>
+                    <img
+                    [src]="item.imageURL"
+                      class="d-block w-100"
+                      alt="..."
+                    />
+                  </div>
+                </div>
+                <a
+                  class="carousel-control-prev"
+                  href="#carouselExampleCaptions"
+                  role="button"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Previous</span>
+                </a>
+                <a
+                  class="carousel-control-next"
+                  href="#carouselExampleCaptions"
+                  role="button"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="visually-hidden">Next</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="col-12 col-lg-4 d-flex">
         <div class="card radius-10 w-100">
           <div class="card-header">
             <div class="d-flex align-items-center">
               <div>
-                <h6 class="mb-0">Processos por categorias</h6>
-              </div>
-              <div class="dropdown ms-auto">
-                <a
-                  class="dropdown-toggle dropdown-toggle-nocaret"
-                  href="#"
-                  data-bs-toggle="dropdown"
-                  ><i
-                    class="bx bx-dots-horizontal-rounded font-22 text-option"
-                  ></i>
-                </a>
-                <ul class="dropdown-menu">
-                  <li>
-                    <a class="dropdown-item" href="javascript:;">Action</a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="javascript:;"
-                      >Another action</a
-                    >
-                  </li>
-                  <li>
-                    <hr class="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="javascript:;"
-                      >Something else here</a
-                    >
-                  </li>
-                </ul>
+                <h6 class="mb-0">Próximos aniversariantes</h6>
               </div>
             </div>
           </div>
           <div class="card-body">
-            <div class="chart-container-2">
-              <canvas id="chart2"></canvas>
+            <div class="list-group">
+              <a
+                href="javascript:;"
+                class="list-group-item list-group-item-action"
+                aria-current="true"
+              >
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Maria Manuel</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">12 de Junho 2023</p>
+              </a>
+              <a
+                href="javascript:;"
+                class="list-group-item list-group-item-action"
+                aria-current="true"
+              >
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">Maria Manuel</h5>
+                  <small>3 days ago</small>
+                </div>
+                <p class="mb-1">12 de Junho 2023</p>
+              </a>
             </div>
           </div>
-          <ul class="list-group list-group-flush">
-            <li
-              class="list-group-item d-flex bg-transparent justify-content-between align-items-center border-top"
-            >
-              Jeans <span class="badge bg-success rounded-pill">25</span>
-            </li>
-            <li
-              class="list-group-item d-flex bg-transparent justify-content-between align-items-center"
-            >
-              T-Shirts <span class="badge bg-danger rounded-pill">10</span>
-            </li>
-            <li
-              class="list-group-item d-flex bg-transparent justify-content-between align-items-center"
-            >
-              Shoes <span class="badge bg-primary rounded-pill">65</span>
-            </li>
-            <li
-              class="list-group-item d-flex bg-transparent justify-content-between align-items-center"
-            >
-              Lingerie
-              <span class="badge bg-warning text-dark rounded-pill">14</span>
-            </li>
-          </ul>
         </div>
       </div>
     </div>
