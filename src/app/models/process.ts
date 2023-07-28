@@ -10,4 +10,15 @@ export class Process {
   entityNIF!: string;
   createdAt!: string;
   qrCodeUuid!: string;
+  obs!: string;
+}
+
+export class ProcessHistory {
+  uuid!: string;
+  action!: string;
+  obs!: string;
+  createdBy!: string;
+  fileUuid!: string;
+  processUuid!: string;
+  createdAt!: string;
 }
